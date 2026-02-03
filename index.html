@@ -52,47 +52,6 @@
         .touch-target {
             min-height: 44px; /* Acessibilidade mínima */
         }
-        /* Loading dots animation */
-        .dot-flashing {
-            position: relative;
-            width: 10px;
-            height: 10px;
-            border-radius: 5px;
-            background-color: #D946EF;
-            color: #D946EF;
-            animation: dot-flashing 1s infinite linear alternate;
-            animation-delay: 0.5s;
-        }
-        .dot-flashing::before, .dot-flashing::after {
-            content: "";
-            display: inline-block;
-            position: absolute;
-            top: 0;
-        }
-        .dot-flashing::before {
-            left: -15px;
-            width: 10px;
-            height: 10px;
-            border-radius: 5px;
-            background-color: #D946EF;
-            color: #D946EF;
-            animation: dot-flashing 1s infinite alternate;
-            animation-delay: 0s;
-        }
-        .dot-flashing::after {
-            left: 15px;
-            width: 10px;
-            height: 10px;
-            border-radius: 5px;
-            background-color: #D946EF;
-            color: #D946EF;
-            animation: dot-flashing 1s infinite alternate;
-            animation-delay: 1s;
-        }
-        @keyframes dot-flashing {
-            0% { background-color: #D946EF; }
-            50%, 100% { background-color: rgba(217, 70, 239, 0.2); }
-        }
         /* Classe utilitária para rotação da seta */
         .rotate-180 {
             transform: rotate(180deg);
@@ -584,64 +543,11 @@
 
         </div>
 
-        <!-- SEÇÃO GEMINI: GURU DA REDUÇÃO DE DANOS -->
-        <section id="gemini-section" class="mt-8 pt-4 border-t border-gray-800">
-            <div class="flex items-center gap-2 mb-3">
-                <span class="text-2xl">🤖</span>
-                <h3 class="text-neonPurple font-black text-xl uppercase tracking-tight">GURU DA REDUÇÃO DE DANOS ✨</h3>
-            </div>
-            
-            <div class="bg-neutral-900 border border-neonPurple/50 rounded-2xl p-4 shadow-neon-purple relative overflow-hidden">
-                <!-- Efeito de brilho de fundo -->
-                <div class="absolute -top-10 -right-10 w-32 h-32 bg-neonPurple/10 rounded-full blur-3xl pointer-events-none"></div>
-
-                <p class="text-gray-300 text-sm mb-4">Dúvidas rápidas sobre saúde, sexo, drogas ou segurança? Pergunte pro Guru! (Sem julgamentos)</p>
-                
-                <!-- Chips de Atalho -->
-                <div class="flex flex-wrap gap-2 mb-4">
-                    <button onclick="fillAndSend('Quais são as dicas de segurança para evitar furtos e problemas no carnaval?')" class="bg-neutral-800 hover:bg-neonPurple hover:text-black border border-gray-700 text-xs py-1.5 px-3 rounded-full transition-colors">🔒 Dicas de segurança</button>
-                    <button onclick="fillAndSend('Me dê dicas essenciais de redução de danos para curtir o carnaval com segurança (álcool e outras substâncias).')" class="bg-neutral-800 hover:bg-neonPurple hover:text-black border border-gray-700 text-xs py-1.5 px-3 rounded-full transition-colors">🛡️ Dicas de redução de danos</button>
-                    <button onclick="fillAndSend('Fiz sexo sem camisinha, o que devo fazer?')" class="bg-neutral-800 hover:bg-neonPurple hover:text-black border border-gray-700 text-xs py-1.5 px-3 rounded-full transition-colors">⚠️ Fiz sexo sem camisinha</button>
-                    <button onclick="fillAndSend('Como curar ressaca rápido durante a festa?')" class="bg-neutral-800 hover:bg-neonPurple hover:text-black border border-gray-700 text-xs py-1.5 px-3 rounded-full transition-colors">🥴 Dica pra Ressaca</button>
-                </div>
-
-                <!-- Input Area -->
-                <div class="relative">
-                    <input type="text" id="gemini-input" placeholder="Digite sua dúvida aqui..." class="w-full bg-black border border-gray-700 text-white rounded-xl py-3 pl-4 pr-12 focus:border-neonPurple focus:outline-none focus:ring-1 focus:ring-neonPurple transition-all">
-                    <button onclick="askGemini()" class="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 bg-neonPurple text-black rounded-lg hover:bg-fuchsia-400 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- Resposta Area -->
-                <div id="gemini-response" class="hidden mt-4 bg-neutral-800/80 rounded-xl p-3 border-l-4 border-neonPurple text-sm text-gray-200 animate-fade-in">
-                    <!-- Conteúdo dinâmico aqui -->
-                </div>
-                
-                <!-- Loading State -->
-                <div id="gemini-loading" class="hidden mt-6 mb-2 flex justify-center">
-                    <div class="dot-flashing"></div>
-                </div>
-
-                <!-- Disclaimer Aumentado e Explícito -->
-                <div class="mt-6 border-t border-gray-800 pt-4 px-2">
-                    <p class="text-xs text-gray-400 text-center leading-relaxed mb-1">
-                        ⚠️ <strong>Aviso:</strong> Esta é uma IA experimental e pode conter erros. Sempre confirme com profissionais de saúde.
-                    </p>
-                    <p class="text-sm font-black text-neonRed text-center uppercase tracking-wide">
-                        Em emergência, ligue 192
-                    </p>
-                </div>
-            </div>
-        </section>
-
     </main>
 
     <!-- Footer Informativo -->
     <footer class="mt-10 px-6 py-8 bg-neutral-900/80 text-center border-t border-gray-800">
-        <h4 class="text-xs font-bold text-gray-400 tracking-widest mb-4">UNIDADES 24H (UPAs) E CTRr</h4>
+        <h4 class="text-xs font-bold text-gray-400 tracking-widest mb-4">UNIDADES 24H (UPAs)</h4>
         <div class="space-y-4 text-sm text-gray-500 font-medium">
             
             <a href="https://www.google.com/maps/search/?api=1&query=UPA+Norte+Florianópolis+Rua+Francisco+Fausto+Martins" target="_blank" class="block hover:text-white transition-colors group">
@@ -657,11 +563,6 @@
             <a href="https://www.google.com/maps/search/?api=1&query=UPA+Continente+Florianópolis+Rua+Gualberto+Senna" target="_blank" class="block hover:text-white transition-colors group">
                 <span class="text-white group-hover:underline">UPA Continente:</span> Jardim Atlântico <br>
                 <span class="text-xs">(R. Gualberto Senna) 📍</span>
-            </a>
-
-            <a href="https://www.google.com/maps/search/?api=1&query=Policlínica+Centro+Florianópolis+Av+Rio+Branco+90" target="_blank" class="block hover:text-white transition-colors group">
-                <span class="text-white group-hover:underline">CTRr Centro:</span> Policlínica Centro <br>
-                <span class="text-xs">(Av. Rio Branco, 90) 📍</span>
             </a>
 
         </div>
@@ -688,118 +589,6 @@
                 if (arrow) arrow.classList.remove('rotate-180');
             }
         }
-
-        // --- GEMINI API INTEGRATION ---
-        
-        function fillAndSend(text) {
-            document.getElementById('gemini-input').value = text;
-            askGemini();
-        }
-
-        async function askGemini() {
-            const inputEl = document.getElementById('gemini-input');
-            const responseEl = document.getElementById('gemini-response');
-            const loadingEl = document.getElementById('gemini-loading');
-            const userQuery = inputEl.value.trim();
-
-            if (!userQuery) return;
-
-            // UI Reset
-            responseEl.classList.add('hidden');
-            responseEl.innerHTML = '';
-            loadingEl.classList.remove('hidden');
-            inputEl.disabled = true;
-
-            // ATENÇÃO: Para publicar online, você precisa gerar uma API Key no Google AI Studio (https://aistudio.google.com/)
-            // e colar dentro das aspas abaixo: const apiKey = "SUA_CHAVE_AQUI";
-            const apiKey = ""; 
-            
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-
-            // PROMPT ATUALIZADO: Contextualizado com a rede SUS de Florianópolis
-            const systemPrompt = `
-            Você é o 'Guru da Redução de Danos' do Carnaval de Florianópolis 2026.
-            Sua persona: Curta, direta, sem julgamentos, usa gírias locais leves (ex: 'tás tolo?', 'moquirido'), focada em acolhimento.
-            
-            SUAS FONTES DE VERDADE (Contexto SUS Floripa):
-            1. EMERGÊNCIA HIV (Sexo sem camisinha/estourou): Correr para UPA Norte, Sul ou Continente em até 72h para iniciar PEP. É urgente.
-            2. VIOLÊNCIA SEXUAL: Indicar Espaço Acolher no Multihospital (Carianos) 24h ou ligar (48) 3239-1705.
-            3. DÚVIDAS GERAIS/AGENDAMENTO: Ligar Alô Saúde 0800 333 3233.
-            4. PrEP (Prevenção): Agendar no bit.ly/teleprepsusfloripa ou Centros de Saúde.
-            5. SINTOMAS LEVES (Ressaca): Hidratação, descanso, alimentação leve. Não receite remédios.
-            6. SINTOMAS GRAVES (Desmaio, dor no peito, sangue): Ligar 192 (SAMU) ou ir pra UPA imediatamente.
-            
-            REGRAS:
-            - Respostas CURTAS (máximo 3 frases).
-            - Baseie-se em evidências científicas de redução de danos.
-            - Se não souber, mande ligar no Alô Saúde.
-            - Use emojis ✨.
-            `;
-
-            const payload = {
-                contents: [{
-                    parts: [{ text: userQuery }]
-                }],
-                systemInstruction: {
-                    parts: [{ text: systemPrompt }]
-                }
-            };
-
-            try {
-                // Retry logic com exponential backoff simples
-                let result = null;
-                let delays = [1000, 2000, 4000];
-                
-                for (let i = 0; i <= delays.length; i++) {
-                    try {
-                        const response = await fetch(url, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-                        
-                        if (!response.ok) throw new Error(response.statusText);
-                        
-                        result = await response.json();
-                        break; // Sucesso, sai do loop
-                    } catch (e) {
-                        if (i === delays.length) throw e; // Se falhar na última tentativa, lança erro
-                        await new Promise(r => setTimeout(r, delays[i]));
-                    }
-                }
-
-                const aiText = result?.candidates?.[0]?.content?.parts?.[0]?.text || "Eita, o sinal tá ruim! Tenta de novo? 📶";
-
-                // Formatando texto (quebra de linha simples e negrito markdown)
-                const formattedText = aiText
-                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                    .replace(/\n/g, '<br>');
-
-                responseEl.innerHTML = formattedText;
-                responseEl.classList.remove('hidden');
-
-            } catch (error) {
-                console.error("Erro Gemini:", error);
-                // Mensagem específica se a chave estiver vazia (erro comum em deploy)
-                if (apiKey === "AIzaSyC5KxdpWoEhMQQfX65tlUg3r4djrrXLTH0") {
-                     responseEl.innerHTML = "⚠️ <strong>Configuração necessária:</strong> Para o Guru funcionar no seu site, é preciso adicionar sua API Key no código.";
-                } else {
-                     responseEl.innerHTML = "😵 Ops! O Guru está sobrecarregado. Tente novamente em instantes.";
-                }
-                responseEl.classList.remove('hidden');
-            } finally {
-                loadingEl.classList.add('hidden');
-                inputEl.disabled = false;
-                inputEl.focus();
-            }
-        }
-
-        // Permitir Enter para enviar
-        document.getElementById('gemini-input').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                askGemini();
-            }
-        });
     </script>
 </body>
 </html>
