@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Floripa Cuida - Carnaval 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        neonGreen: '#39FF14',
+                        neonRed: '#FF073A',
+                        neonYellow: '#FFFF00',
+                        neonBlue: '#00F3FF',
+                        neonPurple: '#D946EF',
+                        darkBg: '#050505',
+                    },
+                    boxShadow: {
+                        'neon-red': '0 0 10px #FF073A, 0 0 20px #FF073A',
+                        'neon-green': '0 0 10px #39FF14',
+                        'neon-blue': '0 0 10px #00F3FF',
+                        'neon-purple': '0 0 10px #D946EF',
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Ajustes finos para garantir toque em mobile */
+        body {
+            -webkit-tap-highlight-color: transparent;
+            background-color: #000;
+            background-image: radial-gradient(#1a1a1a 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .touch-target {
+            min-height: 44px; /* Acessibilidade mínima */
+        }
+        /* Loading dots animation */
+        .dot-flashing {
+            position: relative;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #D946EF;
+            color: #D946EF;
+            animation: dot-flashing 1s infinite linear alternate;
+            animation-delay: 0.5s;
+        }
+        .dot-flashing::before, .dot-flashing::after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            top: 0;
+        }
+        .dot-flashing::before {
+            left: -15px;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #D946EF;
+            color: #D946EF;
+            animation: dot-flashing 1s infinite alternate;
+            animation-delay: 0s;
+        }
+        .dot-flashing::after {
+            left: 15px;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #D946EF;
+            color: #D946EF;
+            animation: dot-flashing 1s infinite alternate;
+            animation-delay: 1s;
+        }
+        @keyframes dot-flashing {
+            0% { background-color: #D946EF; }
+            50%, 100% { background-color: rgba(217, 70, 239, 0.2); }
+        }
+        /* Classe utilitária para rotação da seta */
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="text-white antialiased pb-12">
+
+    <!-- Header Impactante -->
+    <header class="text-center pt-8 pb-4 px-4">
+        <div class="inline-block mb-2">
+            <!-- Icone Estilizado de Coração/Carnaval -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-neonGreen mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+        </div>
+        <h1 class="text-3xl font-black tracking-tighter uppercase leading-none text-neonGreen drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+            PARE O HIV FLORIPA<br>
+            <span class="text-white text-xl font-bold tracking-normal">PREVENÇÃO COMBINADA</span>
+        </h1>
+    </header>
+
+    <main class="px-4 max-w-md mx-auto space-y-6">
+
+        <!-- SEÇÃO DE EMERGÊNCIA (PEP) - HERÓI -->
+        <!-- Design agressivo em vermelho para denotar urgência -->
+        <section class="relative bg-neutral-900 border-2 border-neonRed rounded-2xl p-5 shadow-neon-red animate-pulse-slow">
+            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-neonRed text-black px-4 py-1 rounded-full font-black text-xs tracking-widest uppercase shadow-lg">
+                Emergência
+            </div>
+
+            <div class="mt-2 text-center">
+                <h2 class="text-2xl font-black text-neonRed leading-tight mb-1">
+                    TRANSOU SEM CAMISINHA?
+                </h2>
+                <p class="text-red-400 font-bold text-sm mb-4 uppercase tracking-wide">
+                    Ou a camisinha rompeu?
+                </p>
+                
+                <!-- Quadro 1: PEP 72h (Agora Expansível com Explicação) -->
+                <div class="mb-4 relative">
+                    <button onclick="toggleInfo('info-pep', 'arrow-pep')" class="w-full bg-black/50 rounded-lg p-3 border border-red-900 hover:bg-neutral-800 active:scale-95 transition-all flex items-center justify-between group">
+                        <div class="flex-1 text-center pl-6"> <!-- Padding left para compensar visualmente a seta à direita e manter centralizado -->
+                            <p class="text-gray-300 text-xs font-bold uppercase tracking-widest mb-0">PREVINA O HIV</p>
+                            <div class="text-white font-bold text-lg flex items-center justify-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neonRed animate-pulse-fast" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                INICIE A PEP EM ATÉ 72H
+                            </div>
+                        </div>
+                        <svg id="arrow-pep" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <!-- Conteúdo Oculto (Explicação PEP) -->
+                    <div id="info-pep" class="hidden bg-neutral-900/95 rounded-b-lg border-x border-b border-red-900 p-4 -mt-1 pt-4 animate-fade-in text-left relative z-10">
+                        <strong class="text-neonRed block text-sm mb-2 uppercase">O que é PEP?</strong>
+                        <p class="text-gray-200 text-sm leading-relaxed">
+                            É um <strong>medicamento de emergência</strong> que impede a infecção pelo HIV. Funciona como uma "pílula do dia seguinte" para o vírus.
+                        </p>
+                        <ul class="mt-3 space-y-2 text-sm text-gray-300">
+                            <li class="flex items-start gap-2">
+                                <span class="text-neonRed">⚠️</span> 
+                                <span><strong>Prazo limite:</strong> Inicie em até 72h (3 dias), mas quanto antes, melhor.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500">✅</span> 
+                                <span><strong>É gratuita:</strong> Disponível na UPA (24h), Centro de Saúde do bairro ou num Centro de Testagem e Resposta rápida - CTRr (Policlínicas).</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Quadro 2: Onde ir 24h (Expansível - Texto comercial removido) -->
+                <div class="mb-4 text-left">
+                    <button onclick="toggleInfo('info-upas', 'arrow-upas')" class="w-full bg-neonRed rounded-xl py-4 px-4 shadow-lg border-2 border-neonRed flex items-center justify-between group transition-all active:scale-95">
+                        <div class="flex-1">
+                            <strong class="text-white text-xl block mb-1 uppercase tracking-wide">Onde ir agora (24h)</strong>
+                            <span class="text-white font-bold block leading-tight text-lg">UPA Norte, Sul ou Continente</span>
+                        </div>
+                        <!-- Seta indicativa -->
+                        <svg id="arrow-upas" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    
+                    <!-- Conteúdo Oculto (Endereços UPAs) -->
+                    <div id="info-upas" class="hidden bg-neutral-900/95 rounded-b-xl border-x-2 border-b-2 border-neonRed p-4 -mt-2 pt-6 animate-fade-in relative z-0">
+                         <h4 class="text-neonRed font-bold text-sm uppercase mb-3 border-b border-red-900 pb-2">ENDEREÇOS</h4>
+                         <ul class="space-y-4 text-sm text-gray-300">
+                            <li>
+                                <a href="https://www.google.com/maps/search/?api=1&query=UPA+Norte+Florianópolis+Rua+Francisco+Fausto+Martins" target="_blank" class="block hover:bg-white/5 p-2 -m-2 rounded transition-colors group no-underline">
+                                    <strong class="text-white block text-base group-hover:text-neonRed transition-colors">📍 UPA Norte</strong>
+                                    <span class="block text-gray-400">Vargem Grande</span>
+                                    <span class="text-xs italic group-hover:text-white transition-colors">(R. Francisco Fausto Martins)</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.google.com/maps/search/?api=1&query=UPA+Sul+Florianópolis+Rodovia+Dr+Antônio+Luiz+Moura+Gonzaga" target="_blank" class="block hover:bg-white/5 p-2 -m-2 rounded transition-colors group no-underline">
+                                    <strong class="text-white block text-base group-hover:text-neonRed transition-colors">📍 UPA Sul</strong>
+                                    <span class="block text-gray-400">Rio Tavares</span>
+                                    <span class="text-xs italic group-hover:text-white transition-colors">(Rod. Dr. Antônio Luiz Moura Gonzaga)</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.google.com/maps/search/?api=1&query=UPA+Continente+Florianópolis+Rua+Gualberto+Senna" target="_blank" class="block hover:bg-white/5 p-2 -m-2 rounded transition-colors group no-underline">
+                                    <strong class="text-white block text-base group-hover:text-neonRed transition-colors">📍 UPA Continente</strong>
+                                    <span class="block text-gray-400">Jardim Atlântico</span>
+                                    <span class="text-xs italic group-hover:text-white transition-colors">(R. Gualberto Senna)</span>
+                                </a>
+                            </li>
+                         </ul>
+                    </div>
+                </div>
+
+                <!-- NOVO BOTÃO EXPANSÍVEL: Horário Comercial (WhatsApp CTRr) -->
+                <div class="mb-4 text-left">
+                    <button onclick="toggleInfo('info-ctr', 'arrow-ctr')" class="w-full bg-black/50 border border-red-900 hover:bg-neutral-800 active:scale-95 transition-all rounded-lg p-4 flex items-center justify-between group text-left z-10 relative">
+                        <div class="flex-1 pr-2">
+                            <strong class="text-red-400 text-xs block mb-1 uppercase tracking-wide">EM DIAS DE SEMANA E HORÁRIO COMERCIAL</strong>
+                            <span class="text-white text-sm font-bold block leading-snug">Centros de Saúde e CTRr</span>
+                        </div>
+                        <svg id="arrow-ctr" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <!-- Conteúdo Oculto (Lista de WhatsApp) -->
+                    <div id="info-ctr" class="hidden bg-neutral-900/95 rounded-b-lg border-x border-b border-red-900 p-4 -mt-2 pt-4 animate-fade-in relative z-0">
+                        <p class="text-gray-400 text-xs mb-3">Procure o Centro de Saúde do bairro ou um Centro de Testagem e Resposta rápida (CTRr):</p>
+                        <ul class="space-y-3">
+                            <!-- Novo Quadro: Centro de Saúde (Alô Saúde) -->
+                            <li class="bg-neutral-800 rounded p-2 hover:bg-neutral-700 transition-colors border border-gray-700/50">
+                                <a href="tel:08003333233" class="flex items-start gap-3 no-underline">
+                                    <div class="text-neonRed mt-1">
+                                        <!-- Ícone Telefone -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <strong class="text-white text-sm block">Centro de Saúde</strong>
+                                        <span class="block text-gray-300 text-xs mt-0.5">Agende pelo Alô Saúde <strong class="text-white">0800 333 3233</strong></span>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <!-- CTRr Centro -->
+                            <li class="bg-neutral-800 rounded p-2">
+                                <div class="flex items-start gap-3">
+                                    <div class="text-green-500 mt-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <strong class="text-white text-sm block">CTRr Centro</strong>
+                                        <a href="https://wa.me/5548991215517" class="block text-green-400 font-bold text-sm hover:underline mt-1">48 9 9121-5517</a>
+                                        <a href="https://wa.me/5548991117102" class="block text-green-400 font-bold text-sm hover:underline">48 9 9111-7102</a>
+                                        <a href="https://www.google.com/maps/search/?api=1&query=Policlínica+Centro+Florianópolis+Av+Rio+Branco+90" target="_blank" class="block text-gray-300 hover:text-white text-xs mt-1 hover:underline">
+                                            📍 Policlínica Centro (Av. Rio Branco, 90 - Centro)
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- CTRr Norte -->
+                            <li class="bg-neutral-800 rounded p-2">
+                                <div class="flex items-start gap-3">
+                                    <div class="text-green-500 mt-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <strong class="text-white text-sm block">CTRr Norte</strong>
+                                        <a href="https://wa.me/5548936186445" class="block text-green-400 font-bold text-sm hover:underline mt-1">48 9 3618-6445</a>
+                                        <a href="https://www.google.com/maps/search/?api=1&query=Policlínica+Norte+Florianópolis+Rua+Francisco+Fausto+Martins" target="_blank" class="block text-gray-300 hover:text-white text-xs mt-1 hover:underline">
+                                            📍 Policlínica Norte (R. Francisco Fausto Martins - Vargem Grande)
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- CTRr Continente -->
+                            <li class="bg-neutral-800 rounded p-2">
+                                <div class="flex items-start gap-3">
+                                    <div class="text-green-500 mt-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <strong class="text-white text-sm block">CTRr Continente</strong>
+                                        <a href="https://wa.me/5548999593242" class="block text-green-400 font-bold text-sm hover:underline mt-1">48 9 9959-3242</a>
+                                        <a href="https://www.google.com/maps/search/?api=1&query=Policlínica+Continente+Florianópolis+Rua+Dr+Heitor+Blum+521" target="_blank" class="block text-gray-300 hover:text-white text-xs mt-1 hover:underline">
+                                            📍 Policlínica Continente (R. Dr. Heitor Blum, 521 - Estreito)
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- NOVO BOTÃO EXPANSÍVEL: Violência Sexual (Espaço Acolher) -->
+                <div class="mb-4 text-left">
+                    <button onclick="toggleInfo('info-acolher', 'arrow-acolher')" class="w-full bg-neonRed rounded-xl py-4 px-4 shadow-lg border-2 border-neonRed flex items-center justify-between group transition-all active:scale-95">
+                        <div class="flex-1 pr-2">
+                            <strong class="text-white text-xl block mb-1 uppercase tracking-wide">SOFREU VIOLÊNCIA?</strong>
+                            <span class="text-white font-bold block leading-snug">Procure o Espaço Acolher (24h)</span>
+                        </div>
+                        <svg id="arrow-acolher" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <!-- Conteúdo Oculto (Endereço Acolher) -->
+                    <div id="info-acolher" class="hidden bg-neutral-900/95 rounded-b-xl border-x-2 border-b-2 border-neonRed p-4 -mt-2 pt-6 animate-fade-in relative z-0">
+                        <h4 class="text-neonRed font-bold text-sm uppercase mb-3 border-b border-red-900 pb-2">ENDEREÇO</h4>
+                        <ul class="space-y-4 text-sm text-gray-300">
+                            <li>
+                                <strong class="text-white block text-base">📍 Multihospital de Florianópolis</strong>
+                                <span class="text-xs italic block mb-1 text-gray-400">(Antigo Aeroporto)</span>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Multihospital+de+Florianópolis+Avenida+Deputado+Diomício+Freitas+3393" target="_blank" class="block text-white font-medium hover:underline mb-3">
+                                    Av. Deputado Diomício Freitas, 3393 - Carianos
+                                </a>
+                                <a href="tel:32391705" class="flex items-center gap-2 text-white font-bold bg-neutral-800 p-3 rounded-lg hover:bg-neutral-700 transition-colors w-full justify-center border border-gray-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neonRed" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                    </svg>
+                                    3239-1705
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Botão de Ação Imediata -->
+                <a href="tel:08003333233" class="group flex items-center justify-between w-full bg-black/50 hover:bg-neutral-800 border border-red-900 active:scale-95 transition-all duration-150 rounded-lg p-4 cursor-pointer decoration-0 mb-2">
+                    <div class="flex items-center gap-4">
+                        <!-- Ícone Vermelho à Esquerda (Mantido) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-neonRed shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        
+                        <div class="text-left">
+                            <span class="text-white font-black text-sm uppercase tracking-wide block">DÚVIDAS? LIGUE ALÔ SAÚDE</span>
+                            <span class="block text-white text-xl font-black tracking-widest drop-shadow-md leading-none mt-1">0800 333 3233</span>
+                        </div>
+                    </div>
+
+                    <!-- Ícone de Telefone à Direita (Ação de Ligar) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 group-hover:text-neonRed transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- GRADE DE AÇÃO -->
+        <div class="grid grid-cols-1 gap-4">
+            
+            <!-- Botão 1: PrEP (Movido para o topo) -->
+            <button onclick="toggleInfo('info-prep', 'arrow-prep')" class="w-full bg-neutral-900 border border-neonBlue/50 hover:border-neonBlue hover:bg-neutral-800 active:scale-95 transition-all rounded-xl p-4 flex items-center justify-between group text-left">
+                <div class="flex items-center gap-4">
+                    <div class="bg-neonBlue/20 p-3 rounded-full text-neonBlue">
+                        <!-- Icone Escudo (Proteção) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="text-neonBlue font-black text-xl">PrEP</h3>
+                        <p class="text-gray-400 text-sm">Previna-se do HIV antes do sexo</p>
+                    </div>
+                </div>
+                <!-- Seta indicativa -->
+                <svg id="arrow-prep" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 group-hover:text-neonBlue transition-colors transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+
+            <!-- Conteúdo Expansível PrEP -->
+            <div id="info-prep" class="hidden bg-neutral-800/50 rounded-xl p-4 border-l-4 border-neonBlue ml-2 animate-fade-in mt-2">
+                <strong class="text-neonBlue block text-sm mb-2">O que é PrEP?</strong>
+                <p class="text-gray-200 text-sm leading-relaxed mb-4">
+                    É um <strong>comprimido diário</strong> (ou sob demanda) que você toma antes do sexo para se proteger do HIV.
+                </p>
+                
+                <div class="bg-neutral-900 rounded-lg p-3 border border-neonBlue/30">
+                    <p class="text-xs text-gray-400 mb-3 uppercase font-bold tracking-wide">COMO CONSEGUIR GRÁTIS:</p>
+                    
+                    <div class="space-y-3">
+                        <!-- 1. Link TelePrEP -->
+                        <a href="http://bit.ly/teleprepsusfloripa" target="_blank" class="flex items-center gap-3 bg-neonBlue/10 hover:bg-neonBlue/20 border border-neonBlue/50 p-3 rounded-lg transition-colors group/link text-white no-underline">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neonBlue shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <div class="flex-1">
+                                <strong class="block text-sm text-neonBlue uppercase leading-none mb-1">SOLICITE EM</strong>
+                                <span class="text-sm text-gray-300 break-all font-medium">bit.ly/teleprepsusfloripa</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-neonBlue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        </a>
+
+                        <!-- 2. Presencial ou Telefone -->
+                        <div class="bg-black/40 p-3 rounded-lg border border-gray-700">
+                            <p class="text-sm text-gray-300 mb-2 leading-tight">Ou agende no <strong>Centro de Saúde</strong> do bairro.</p>
+                            <a href="tel:08003333233" class="flex items-center gap-2 text-white font-bold text-sm hover:text-neonRed transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-neonRed" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                                Ligue Alô Saúde 0800 333 3233
+                            </a>
+                        </div>
+
+                        <!-- 3. WhatsApp Dúvidas -->
+                        <a href="https://wa.me/5548996086606" class="flex items-center gap-3 text-white hover:text-green-400 transition-colors py-1 px-1 mt-2 border-t border-gray-800 pt-3">
+                            <div class="bg-green-500/20 p-2 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                            </div>
+                            <div class="flex-1">
+                                <span class="block text-sm font-bold">Dúvidas?</span>
+                                <span class="text-xs text-gray-400">WhatsApp (48) 9 9608-6606</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botão 2: Autoteste (Mantido na 2ª posição) -->
+            <button onclick="toggleInfo('info-autoteste', 'arrow-autoteste')" class="w-full bg-neutral-900 border border-neonGreen/50 hover:border-neonGreen hover:bg-neutral-800 active:scale-95 transition-all rounded-xl p-4 flex items-center justify-between group text-left">
+                <div class="flex items-center gap-4">
+                    <div class="bg-neonGreen/20 p-3 rounded-full text-neonGreen">
+                        <!-- Icone Teste (Gota de Sangue) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a6 6 0 01-6-6c0-3.042 1.135-5.824 3-7.938C9.914 5.65 11.234 4 12 4c.766 0 2.086 1.65 3 3.062C16.865 9.176 18 11.958 18 15a6 6 0 01-6 6z" />
+                        </svg>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="text-neonGreen font-black text-xl uppercase">AUTOTESTE DE HIV</h3>
+                        <p class="text-gray-400 text-sm">Onde retirar grátis</p>
+                    </div>
+                </div>
+                <!-- Seta indicativa -->
+                <svg id="arrow-autoteste" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 group-hover:text-neonGreen transition-colors transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+
+            <!-- Conteúdo Expansível Botão 2 -->
+            <div id="info-autoteste" class="hidden bg-neutral-800/50 rounded-xl p-4 border-l-4 border-neonGreen ml-2 animate-fade-in mt-2">
+                <p class="text-sm text-gray-200">Disponível gratuitamente em:</p>
+                <ul class="list-disc list-inside text-sm text-gray-300 mt-2 space-y-1 mb-4">
+                    <li>Centros de Saúde</li>
+                    <li>UPAs</li>
+                    <li>CTRr (Centro de Testagem) - Policlínicas</li>
+                    <li>Estabelecimentos parceiros (como bares, casas noturnas, outros)</li>
+                </ul>
+                
+                <!-- Separador e Link do Site -->
+                <div class="border-t border-gray-700 pt-3">
+                    <p class="text-sm text-gray-300 mb-2">Ou solicite online:</p>
+                    <a href="https://ahoraeagora.org" target="_blank" class="inline-flex items-center gap-2 text-neonGreen font-bold hover:underline bg-neutral-900/50 p-2 rounded-lg border border-neonGreen/30 hover:bg-neutral-900 w-full justify-center">
+                        ahoraeagora.org
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Botão 3: Camisinha (Movido para a 3ª posição) -->
+            <button onclick="toggleInfo('info-prevencao', 'arrow-prevencao')" class="w-full bg-neutral-900 border border-neonYellow/50 hover:border-neonYellow hover:bg-neutral-800 active:scale-95 transition-all rounded-xl p-4 flex items-center justify-between group">
+                <div class="flex items-center gap-4">
+                    <div class="bg-neonYellow/20 p-3 rounded-full text-neonYellow">
+                        <!-- Icone Escudo -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="text-neonYellow font-black text-xl uppercase">Camisinha e Gel</h3>
+                        <p class="text-gray-400 text-sm">Onde retirar grátis</p>
+                    </div>
+                </div>
+                <svg id="arrow-prevencao" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 group-hover:text-neonYellow transition-colors transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <!-- Conteúdo Expansível Botão 1 -->
+            <div id="info-prevencao" class="hidden bg-neutral-800/50 rounded-xl p-4 border-l-4 border-neonYellow ml-2 animate-fade-in">
+                <p class="text-sm text-gray-200">Disponível gratuitamente em:</p>
+                <ul class="list-disc list-inside text-sm text-gray-300 mt-2 space-y-1">
+                    <li>Centros de Saúde</li>
+                    <li>UPAs</li>
+                    <li>CTRr (Centro de Testagem) - Policlínicas</li>
+                    <li>Estabelecimentos parceiros (como bares, casas noturnas, outros)</li>
+                </ul>
+            </div>
+
+            <!-- Botão 4: Testagem IST (Agora Expansível) - Mantido na 4ª posição -->
+            <button onclick="toggleInfo('info-ist', 'arrow-ist')" class="w-full bg-neutral-900 border border-purple-500 hover:border-purple-400 hover:bg-neutral-800 active:scale-95 transition-all rounded-xl p-4 flex items-center justify-between group text-left">
+                <div class="flex items-center gap-4">
+                    <div class="bg-purple-500/20 p-3 rounded-full text-purple-400">
+                        <!-- Icone Agenda -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="text-purple-400 font-black text-xl uppercase">TESTES/EXAMES DE IST</h3>
+                        <p class="text-gray-400 text-sm">Teste HIV, sífilis e outras ISTs</p>
+                    </div>
+                </div>
+                <!-- Seta indicativa -->
+                <svg id="arrow-ist" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 group-hover:text-purple-400 transition-colors transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+
+            <!-- Conteúdo Expansível IST (Cópia da info do botão Dias de Semana) -->
+            <div id="info-ist" class="hidden bg-neutral-800/50 rounded-xl p-4 border-l-4 border-purple-500 ml-2 animate-fade-in mt-2">
+                <p class="text-gray-200 text-sm mb-3">Procure o Centro de Saúde do bairro ou um Centro de Testagem e Resposta rápida (CTRr):</p>
+                <ul class="space-y-3">
+                    <!-- Novo Quadro: Centro de Saúde (Alô Saúde) -->
+                    <li class="bg-neutral-800 rounded p-2 hover:bg-neutral-700 transition-colors border border-gray-700/50">
+                        <a href="tel:08003333233" class="flex items-start gap-3 no-underline">
+                            <div class="text-neonRed mt-1">
+                                <!-- Ícone Telefone -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <strong class="text-white text-sm block">Centro de Saúde</strong>
+                                <span class="block text-gray-300 text-xs mt-0.5">Agende pelo Alô Saúde <strong class="text-white">0800 333 3233</strong></span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <!-- CTRr Centro -->
+                    <li class="bg-neutral-800 rounded p-2">
+                        <div class="flex items-start gap-3">
+                            <div class="text-green-500 mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                            </div>
+                            <div class="flex-1">
+                                <strong class="text-white text-sm block">CTRr Norte</strong>
+                                <a href="https://wa.me/5548936186445" class="block text-green-400 font-bold text-sm hover:underline mt-1">48 9 3618-6445</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Policlínica+Norte+Florianópolis+Rua+Francisco+Fausto+Martins" target="_blank" class="block text-gray-300 hover:text-white text-xs mt-1 hover:underline">
+                                    📍 Policlínica Norte (R. Francisco Fausto Martins - Vargem Grande)
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- CTRr Continente -->
+                    <li class="bg-neutral-800 rounded p-2">
+                        <div class="flex items-start gap-3">
+                            <div class="text-green-500 mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                            </div>
+                            <div class="flex-1">
+                                <strong class="text-white text-sm block">CTRr Continente</strong>
+                                <a href="https://wa.me/5548999593242" class="block text-green-400 font-bold text-sm hover:underline mt-1">48 9 9959-3242</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Policlínica+Continente+Florianópolis+Rua+Dr+Heitor+Blum+521" target="_blank" class="block text-gray-300 hover:text-white text-xs mt-1 hover:underline">
+                                    📍 Policlínica Continente (R. Dr. Heitor Blum, 521 - Estreito)
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Botão 5: Sintomas (Agora Laranja) -->
+            <button onclick="toggleInfo('info-sintomas', 'arrow-sintomas')" class="w-full bg-neutral-900 border border-orange-500 hover:border-orange-400 hover:bg-neutral-800 active:scale-95 transition-all rounded-xl p-4 flex items-center justify-between group text-left">
+                <div class="flex items-center gap-4">
+                    <div class="bg-orange-500/20 p-3 rounded-full text-orange-400">
+                        <!-- Icone Lupa/Diagnóstico -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="text-orange-400 font-black text-xl uppercase">ESTÁ COM SINTOMAS?</h3>
+                        <p class="text-gray-400 text-sm">Diagnostique e trate sintomas genitais</p>
+                    </div>
+                </div>
+                <!-- Seta indicativa -->
+                <svg id="arrow-sintomas" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 group-hover:text-orange-400 transition-colors transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+
+            <!-- Conteúdo Expansível Sintomas (Agora com borda Laranja) -->
+            <div id="info-sintomas" class="hidden bg-neutral-800/50 rounded-xl p-4 border-l-4 border-orange-500 ml-2 animate-fade-in mt-2">
+                <p class="text-gray-200 text-sm mb-3">Procure o Centro de Saúde do bairro ou um Centro de Testagem e Resposta rápida (CTRr):</p>
+                <ul class="space-y-3">
+                    <!-- Centro de Saúde (Alô Saúde) -->
+                    <li class="bg-neutral-800 rounded p-2 hover:bg-neutral-700 transition-colors border border-gray-700/50">
+                        <a href="tel:08003333233" class="flex items-start gap-3 no-underline">
+                            <div class="text-neonRed mt-1">
+                                <!-- Ícone Telefone -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <strong class="text-white text-sm block">Centro de Saúde</strong>
+                                <span class="block text-gray-300 text-xs mt-0.5">Agende pelo Alô Saúde <strong class="text-white">0800 333 3233</strong></span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <!-- CTRr Centro -->
+                    <li class="bg-neutral-800 rounded p-2">
+                        <div class="flex items-start gap-3">
+                            <div class="text-green-500 mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                            </div>
+                            <div class="flex-1">
+                                <strong class="text-white text-sm block">CTRr Centro</strong>
+                                <a href="https://wa.me/5548991215517" class="block text-green-400 font-bold text-sm hover:underline mt-1">48 9 9121-5517</a>
+                                <a href="https://wa.me/5548991117102" class="block text-green-400 font-bold text-sm hover:underline">48 9 9111-7102</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Policlínica+Centro+Florianópolis+Av+Rio+Branco+90" target="_blank" class="block text-gray-300 hover:text-white text-xs mt-1 hover:underline">
+                                    📍 Policlínica Centro (Av. Rio Branco, 90 - Centro)
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- CTRr Norte -->
+                    <li class="bg-neutral-800 rounded p-2">
+                        <div class="flex items-start gap-3">
+                            <div class="text-green-500 mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                            </div>
+                            <div class="flex-1">
+                                <strong class="text-white text-sm block">CTRr Norte</strong>
+                                <a href="https://wa.me/5548936186445" class="block text-green-400 font-bold text-sm hover:underline mt-1">48 9 3618-6445</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Policlínica+Norte+Florianópolis+Rua+Francisco+Fausto+Martins" target="_blank" class="block text-gray-300 hover:text-white text-xs mt-1 hover:underline">
+                                    📍 Policlínica Norte (R. Francisco Fausto Martins - Vargem Grande)
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- CTRr Continente -->
+                    <li class="bg-neutral-800 rounded p-2">
+                        <div class="flex items-start gap-3">
+                            <div class="text-green-500 mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                            </div>
+                            <div class="flex-1">
+                                <strong class="text-white text-sm block">CTRr Continente</strong>
+                                <a href="https://wa.me/5548999593242" class="block text-green-400 font-bold text-sm hover:underline mt-1">48 9 9959-3242</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Policlínica+Continente+Florianópolis+Rua+Dr+Heitor+Blum+521" target="_blank" class="block text-gray-300 hover:text-white text-xs mt-1 hover:underline">
+                                    📍 Policlínica Continente (R. Dr. Heitor Blum, 521 - Estreito)
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- SEÇÃO GEMINI: GURU DA REDUÇÃO DE DANOS -->
+        <section id="gemini-section" class="mt-8 pt-4 border-t border-gray-800">
+            <div class="flex items-center gap-2 mb-3">
+                <span class="text-2xl">🤖</span>
+                <h3 class="text-neonPurple font-black text-xl uppercase tracking-tight">GURU DA REDUÇÃO DE DANOS ✨</h3>
+            </div>
+            
+            <div class="bg-neutral-900 border border-neonPurple/50 rounded-2xl p-4 shadow-neon-purple relative overflow-hidden">
+                <!-- Efeito de brilho de fundo -->
+                <div class="absolute -top-10 -right-10 w-32 h-32 bg-neonPurple/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <p class="text-gray-300 text-sm mb-4">Dúvidas rápidas sobre saúde, sexo, drogas ou segurança? Pergunte pro Guru! (Sem julgamentos)</p>
+                
+                <!-- Chips de Atalho -->
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <button onclick="fillAndSend('Quais são as dicas de segurança para evitar furtos e problemas no carnaval?')" class="bg-neutral-800 hover:bg-neonPurple hover:text-black border border-gray-700 text-xs py-1.5 px-3 rounded-full transition-colors">🔒 Dicas de segurança</button>
+                    <button onclick="fillAndSend('Me dê dicas essenciais de redução de danos para curtir o carnaval com segurança (álcool e outras substâncias).')" class="bg-neutral-800 hover:bg-neonPurple hover:text-black border border-gray-700 text-xs py-1.5 px-3 rounded-full transition-colors">🛡️ Dicas de redução de danos</button>
+                    <button onclick="fillAndSend('Fiz sexo sem camisinha, o que devo fazer?')" class="bg-neutral-800 hover:bg-neonPurple hover:text-black border border-gray-700 text-xs py-1.5 px-3 rounded-full transition-colors">⚠️ Fiz sexo sem camisinha</button>
+                    <button onclick="fillAndSend('Como curar ressaca rápido durante a festa?')" class="bg-neutral-800 hover:bg-neonPurple hover:text-black border border-gray-700 text-xs py-1.5 px-3 rounded-full transition-colors">🥴 Dica pra Ressaca</button>
+                </div>
+
+                <!-- Input Area -->
+                <div class="relative">
+                    <input type="text" id="gemini-input" placeholder="Digite sua dúvida aqui..." class="w-full bg-black border border-gray-700 text-white rounded-xl py-3 pl-4 pr-12 focus:border-neonPurple focus:outline-none focus:ring-1 focus:ring-neonPurple transition-all">
+                    <button onclick="askGemini()" class="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 bg-neonPurple text-black rounded-lg hover:bg-fuchsia-400 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Resposta Area -->
+                <div id="gemini-response" class="hidden mt-4 bg-neutral-800/80 rounded-xl p-3 border-l-4 border-neonPurple text-sm text-gray-200 animate-fade-in">
+                    <!-- Conteúdo dinâmico aqui -->
+                </div>
+                
+                <!-- Loading State -->
+                <div id="gemini-loading" class="hidden mt-6 mb-2 flex justify-center">
+                    <div class="dot-flashing"></div>
+                </div>
+
+                <!-- Disclaimer Aumentado e Explícito -->
+                <div class="mt-6 border-t border-gray-800 pt-4 px-2">
+                    <p class="text-xs text-gray-400 text-center leading-relaxed mb-1">
+                        ⚠️ <strong>Aviso:</strong> Esta é uma IA experimental e pode conter erros. Sempre confirme com profissionais de saúde.
+                    </p>
+                    <p class="text-sm font-black text-neonRed text-center uppercase tracking-wide">
+                        Em emergência, ligue 192
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Informativo -->
+    <footer class="mt-10 px-6 py-8 bg-neutral-900/80 text-center border-t border-gray-800">
+        <h4 class="text-xs font-bold text-gray-400 tracking-widest mb-4">UNIDADES 24H (UPAs)</h4>
+        <div class="space-y-4 text-sm text-gray-500 font-medium">
+            
+            <a href="https://www.google.com/maps/search/?api=1&query=UPA+Norte+Florianópolis+Rua+Francisco+Fausto+Martins" target="_blank" class="block hover:text-white transition-colors group">
+                <span class="text-white group-hover:underline">UPA Norte:</span> Vargem Grande <br>
+                <span class="text-xs">(R. Francisco Fausto Martins) 📍</span>
+            </a>
+
+            <a href="https://www.google.com/maps/search/?api=1&query=UPA+Sul+Florianópolis+Rodovia+Dr+Antônio+Luiz+Moura+Gonzaga" target="_blank" class="block hover:text-white transition-colors group">
+                <span class="text-white group-hover:underline">UPA Sul:</span> Rio Tavares <br>
+                <span class="text-xs">(Rod. Dr. Antônio Luiz Moura Gonzaga) 📍</span>
+            </a>
+
+            <a href="https://www.google.com/maps/search/?api=1&query=UPA+Continente+Florianópolis+Rua+Gualberto+Senna" target="_blank" class="block hover:text-white transition-colors group">
+                <span class="text-white group-hover:underline">UPA Continente:</span> Jardim Atlântico <br>
+                <span class="text-xs">(R. Gualberto Senna) 📍</span>
+            </a>
+
+        </div>
+        
+        <!-- SEÇÃO REALIZAÇÃO (Texto Limpo) -->
+        <div class="mt-12 border-t border-gray-800/50 pt-8 pb-8">
+            <h5 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">REALIZAÇÃO</h5>
+            <p class="text-sm text-gray-300 font-medium">Secretaria Municipal de Saúde de Florianópolis/SC</p>
+        </div>
+        
+    </footer>
+
+    <script>
+        // Script simples para expandir detalhes sem sair da página
+        function toggleInfo(contentId, arrowId) {
+            const content = document.getElementById(contentId);
+            const arrow = document.getElementById(arrowId);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                if (arrow) arrow.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                if (arrow) arrow.classList.remove('rotate-180');
+            }
+        }
+
+        // --- GEMINI API INTEGRATION ---
+        
+        function fillAndSend(text) {
+            document.getElementById('gemini-input').value = text;
+            askGemini();
+        }
+
+        async function askGemini() {
+            const inputEl = document.getElementById('gemini-input');
+            const responseEl = document.getElementById('gemini-response');
+            const loadingEl = document.getElementById('gemini-loading');
+            const userQuery = inputEl.value.trim();
+
+            if (!userQuery) return;
+
+            // UI Reset
+            responseEl.classList.add('hidden');
+            responseEl.innerHTML = '';
+            loadingEl.classList.remove('hidden');
+            inputEl.disabled = true;
+
+            const apiKey = ""; // API Key handled by runtime environment
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+            // PROMPT ATUALIZADO: Contextualizado com a rede SUS de Florianópolis
+            const systemPrompt = `
+            Você é o 'Guru da Redução de Danos' do Carnaval de Florianópolis 2026.
+            Sua persona: Curta, direta, sem julgamentos, usa gírias locais leves (ex: 'tás tolo?', 'moquirido'), focada em acolhimento.
+            
+            SUAS FONTES DE VERDADE (Contexto SUS Floripa):
+            1. EMERGÊNCIA HIV (Sexo sem camisinha/estourou): Correr para UPA Norte, Sul ou Continente em até 72h para iniciar PEP. É urgente.
+            2. VIOLÊNCIA SEXUAL: Indicar Espaço Acolher no Multihospital (Carianos) 24h ou ligar (48) 3239-1705.
+            3. DÚVIDAS GERAIS/AGENDAMENTO: Ligar Alô Saúde 0800 333 3233.
+            4. PrEP (Prevenção): Agendar no bit.ly/teleprepsusfloripa ou Centros de Saúde.
+            5. SINTOMAS LEVES (Ressaca): Hidratação, descanso, alimentação leve. Não receite remédios.
+            6. SINTOMAS GRAVES (Desmaio, dor no peito, sangue): Ligar 192 (SAMU) ou ir pra UPA imediatamente.
+            
+            REGRAS:
+            - Respostas CURTAS (máximo 3 frases).
+            - Baseie-se em evidências científicas de redução de danos.
+            - Se não souber, mande ligar no Alô Saúde.
+            - Use emojis ✨.
+            `;
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: userQuery }]
+                }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                }
+            };
+
+            try {
+                // Retry logic com exponential backoff simples
+                let result = null;
+                let delays = [1000, 2000, 4000];
+                
+                for (let i = 0; i <= delays.length; i++) {
+                    try {
+                        const response = await fetch(url, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        
+                        if (!response.ok) throw new Error(response.statusText);
+                        
+                        result = await response.json();
+                        break; // Sucesso, sai do loop
+                    } catch (e) {
+                        if (i === delays.length) throw e; // Se falhar na última tentativa, lança erro
+                        await new Promise(r => setTimeout(r, delays[i]));
+                    }
+                }
+
+                const aiText = result?.candidates?.[0]?.content?.parts?.[0]?.text || "Eita, o sinal tá ruim! Tenta de novo? 📶";
+
+                // Formatando texto (quebra de linha simples e negrito markdown)
+                const formattedText = aiText
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\n/g, '<br>');
+
+                responseEl.innerHTML = formattedText;
+                responseEl.classList.remove('hidden');
+
+            } catch (error) {
+                console.error("Erro Gemini:", error);
+                responseEl.innerHTML = "😵 Ops! Muita gente chamando o Guru. Tente de novo em alguns segundos.";
+                responseEl.classList.remove('hidden');
+            } finally {
+                loadingEl.classList.add('hidden');
+                inputEl.disabled = false;
+                inputEl.focus();
+            }
+        }
+
+        // Permitir Enter para enviar
+        document.getElementById('gemini-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                askGemini();
+            }
+        });
+    </script>
+</body>
+</html>
